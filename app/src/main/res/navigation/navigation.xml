@@ -22,5 +22,8 @@
         <action
             android:id="@+id/action_chatFragment_to_baseFragment"
             app:destination="@id/baseFragment" />
+        <argument
+            android:name="my_key"
+            app:argType="string" />
     </fragment>
 </navigation>

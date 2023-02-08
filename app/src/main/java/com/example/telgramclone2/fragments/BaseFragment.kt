@@ -6,7 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.telgramclone2.R
+import com.example.telgramclone2.adapters.ItemColback
 import com.example.telgramclone2.adapters.UsersAdapter
 import com.example.telgramclone2.databinding.FragmentBaseBinding
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +26,13 @@ class BaseFragment : Fragment() {
     private var _binding: FragmentBaseBinding? = null
     private val binding get() = _binding!!
     private val TAG = "dfasdgh"
-    private val adapterUsers by lazy { UsersAdapter() }
+    private val adapterUsers by lazy { UsersAdapter(object : ItemColback{
+        override fun itemClick(str: String) {
+            val bundle = bundleOf("my_key" to "Bexruz")
+            findNavController().navigate(R.id.action_baseFragment_to_chatFragment2, bundle)
+            Toast.makeText(requireContext(), str, Toast.LENGTH_SHORT).show()
+        }
+    }) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

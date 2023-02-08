@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.telgramclone2.databinding.UsersItemLyBinding
 
-class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
+class UsersAdapter(val itemColback: ItemColback): RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
     var baseList = emptyList<String>()
         set(value) {
             field = value
@@ -15,6 +15,9 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
     inner  class ItemHolder(val b: UsersItemLyBinding): RecyclerView.ViewHolder(b.root){
         fun bind(itemData: String){
             b.user.text = itemData
+            itemView.setOnClickListener {
+                itemColback.itemClick(itemData)
+            }
         }
     }
 
@@ -27,4 +30,7 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ItemHolder>() {
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
        holder.bind(baseList[position])
     }
+}
+interface ItemColback{
+    fun itemClick(str: String)
 }
