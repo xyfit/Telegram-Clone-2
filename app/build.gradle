@@ -54,4 +54,6 @@ dependencies {
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    //hawk
+    implementation "com.orhanobut:hawk:2.0.1"
 }
